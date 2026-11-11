@@ -1,0 +1,38 @@
+# Testing Map Compressor (pre-release)
+
+Thanks for testing. This is version 0.1, before TAK.gov signing. Please report problems as GitHub issues on this repository. Include your device, TAK client and version, and the input map's size, coordinate system (e.g. UTM 16N) and source software (e.g. PIX4Dreact).
+
+Everything you need is on the **Releases** page (`v0.1.0-test`).
+
+## 1. Offline page (anyone, any computer)
+
+1. Download `map-compressor-offline.html` and open it in Chrome, Edge, Firefox or Safari. No install or internet is needed.
+2. Choose a GeoTIFF. Try the **quality** slider and **image size**, and check that the preview lands in the right place.
+3. Click **Download GeoTIFF** and load the result in your TAK client:
+   - **ATAK:** Import Manager → Image Overlay File.
+   - **iTAK / TAK Aware / WebTAK / CloudTAK:** import the GeoTIFF or the Data Package.
+
+Check:
+- the overlay lines up with the basemap,
+- empty borders are see-through (GeoTIFF),
+- the overlay is sharp enough at the zoom you use,
+- the file size is reasonable.
+
+## 2. ATAK plugin (Android, developer ATAK only)
+
+The APKs on the Releases page are **not TAK.gov-signed yet**. They load only in the **developer ATAK** that ships with the ATAK SDK (from your own TAK.gov account), not in Play Store / TAK.gov ATAK. Release-ATAK users should test with the offline page until signed builds are available.
+
+1. Install the APK that matches your developer ATAK: `…-5.6.0-…`, `…-5.7.0-…` or `…-5.8.0-…`.
+2. In ATAK: **Settings → Tool Preferences → Plugins**, then load **Map Compressor**.
+3. Open **Map Compressor** from the toolbar/Tools menu. Pick a GeoTIFF, set the quality, and tap **Convert & add to map**.
+
+Check:
+- the overlay is added and the map zooms to it,
+- the border is see-through,
+- **Share…** sends the file to another TAK user.
+
+## What we especially want to hear
+
+- Maps that fail to load, or land in the wrong place (please include the coordinate system).
+- Results on iTAK and TAK Aware.
+- Large inputs (>500 MB): time taken, and whether the device ran out of memory.

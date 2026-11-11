@@ -12,6 +12,8 @@ Imagery from incidents and operations is often sensitive. Map Compressor never u
 - **The online satellite basemap is off by default.** Turning it on downloads Esri map tiles, which reveals the *area* you're viewing (never the image itself). The page shows a clear warning while it's on.
 - **Nothing is shared** until you choose to: download a file, or, in the CloudTAK plugin, press *Share to TAK Server*.
 
+> **Testers:** see [TESTING.md](TESTING.md).
+
 ## Ways to run it
 
 | | Best for | Needs |
