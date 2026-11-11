@@ -10,10 +10,10 @@ A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in AT
 |---|---|
 | **Any computer** (Windows, Mac, Linux, offline). Works with every TAK client. | [**map-compressor-offline.html**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/map-compressor-offline.html) |
 | **ATAK 5.8** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.8.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.8.0.apk) |
-| **ATAK 5.7** plugin (developer ATAK only, signing in progress) | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
+| **ATAK 5.7** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
 | **ATAK 5.6** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.6.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.6.0.apk) |
 
-> ✅ The **ATAK 5.6 and 5.8** plugins are signed by TAK.gov, so they load in normal Play Store / TAK.gov ATAK-CIV. The **5.7** build is still being signed; until then it only loads in **developer ATAK** (from the ATAK SDK). See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
+> ✅ All three ATAK plugins (**5.6, 5.7 and 5.8**) are signed by TAK.gov, so they load in normal Play Store / TAK.gov ATAK-CIV. Download the one that matches your ATAK version. See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
 
 ## Privacy: runs entirely on your device
 
