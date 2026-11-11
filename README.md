@@ -4,6 +4,17 @@ Turns large GeoTIFF maps and drone orthomosaics (e.g. PIX4Dreact / PIX4Dengine e
 
 A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in ATAK, lined up with the basemap.
 
+## ⬇️ Download (test build 0.1.0)
+
+| For | Download |
+|---|---|
+| **Any computer** (Windows, Mac, Linux, offline). Works with every TAK client. | [**map-compressor-offline.html**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/map-compressor-offline.html) |
+| **ATAK 5.8** plugin | [**MapCompressor-ATAK-5.8.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.8.0.apk) |
+| **ATAK 5.7** plugin | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
+| **ATAK 5.6** plugin | [**MapCompressor-ATAK-5.6.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.6.0.apk) |
+
+> ⚠️ The ATAK plugin APKs are **not TAK.gov-signed yet**. They load only in **developer ATAK** (from the ATAK SDK), not Play Store / TAK.gov ATAK. Everyone else: use the offline page. See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
+
 ## Privacy: runs entirely on your device
 
 Imagery from incidents and operations is often sensitive. Map Compressor never uploads it:
@@ -11,8 +22,6 @@ Imagery from incidents and operations is often sensitive. Map Compressor never u
 - **The offline page makes zero network requests** by default. A built-in Content Security Policy blocks every request except the optional basemap, even if a library tried to call out.
 - **The online satellite basemap is off by default.** Turning it on downloads Esri map tiles, which reveals the *area* you're viewing (never the image itself). The page shows a clear warning while it's on.
 - **Nothing is shared** until you choose to: download a file, or, in the CloudTAK plugin, press *Share to TAK Server*.
-
-> **Testers:** see [TESTING.md](TESTING.md).
 
 ## Ways to run it
 
