@@ -1,0 +1,31 @@
+# ProGuard rules for release builds (required settings for ATAK plugins).
+-dontskipnonpubliclibraryclasses
+-dontshrink
+-dontoptimize
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable
+-applymapping <atak.proguard.mapping>
+-keepattributes *Annotation*
+-keepattributes Signature, InnerClasses
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+# The plugin entry point must keep its name for ATAK to find it.
+-keep class * implements gov.tak.api.plugin.IPlugin {
+}
+-keep class module-info
+-keep,allowobfuscation @interface gov.tak.api.annotation.DontObfuscate
+-keep @gov.tak.api.annotation.DontObfuscate class * {*;}
+-keepclassmembers class * {
+    @gov.tak.api.annotation.DontObfuscate *;
+}

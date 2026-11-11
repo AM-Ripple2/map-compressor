@@ -1,0 +1,152 @@
+// Map Compressor ATAK plugin.
+//
+// One source tree, built separately for each ATAK version:
+//   ./build-all.sh            (builds 5.6, 5.7 and 5.8 against the matching SDKs)
+// or for one version:
+//   ./gradlew -PatakVersion=5.6.0 -Psdk.path=<SDK> -Ptakdev.plugin=<SDK>/atak-gradle-takdev.jar assembleCivDebug
+//
+// PLUGIN_VERSION: this plugin's version.  ATAK_VERSION: the ATAK release it is built for.
+
+buildscript {
+    ext.PLUGIN_VERSION = "0.1"
+    ext.ATAK_VERSION = project.findProperty('atakVersion') ?: '5.8.0'
+
+    def readLocal = { key ->
+        def f = project.rootProject.file('local.properties')
+        if (!f.isFile()) return null
+        def p = new Properties()
+        f.withReader { p.load(it) }
+        return p.get(key)
+    }
+    def prop = { name, defValue ->
+        def v = project.properties[name] ?: readLocal(name)
+        return (null == v) ? defValue : v
+    }
+    // Build offline from a local ATAK SDK (not TAK.gov's artifact repository).
+    ext.isDevKitEnabled = { -> false }
+    ext.takrepoUrl = 'https://localhost/'
+    ext.takrepoUser = 'invalid'
+    ext.takrepoPassword = 'invalid'
+    ext.takdevPlugin = prop('takdev.plugin', null)
+    if (ext.takdevPlugin == null) {
+        throw new GradleException("Set takdev.plugin (and sdk.path) to an ATAK SDK: see local.properties.example or build-all.sh")
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath files(takdevPlugin)
+    }
+}
+
+plugins {
+    id("com.android.application")
+}
+apply plugin: "atak-takdev-plugin"
+
+// takdev adds project-level repositories; declare the standard ones here too.
+repositories {
+    google()
+    mavenCentral()
+}
+
+android {
+    compileSdk 36
+    namespace 'com.atakmap.android.mapcompressor.plugin'
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // Required by ATAK: otherwise the plugin's inner signing check fails and it won't load.
+    bundle {
+        storeArchive {
+            enable = false
+        }
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/INDEX.LIST']
+        }
+        // Required by ATAK for plugins: extract native libraries from the APK.
+        jniLibs.useLegacyPackaging true
+    }
+
+    // Development signing key supplied by the ATAK SDK (copied into build/ by takdev).
+    // Production builds are signed by TAK.gov's third-party plugin pipeline.
+    signingConfigs {
+        debug {
+            storeFile file("${buildDir}/android_keystore")
+            storePassword "tnttnt"
+            keyAlias "wintec_mapping"
+            keyPassword "tnttnt"
+        }
+        release {
+            storeFile file("${buildDir}/android_keystore")
+            storePassword "tnttnt"
+            keyAlias "wintec_mapping"
+            keyPassword "tnttnt"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            matchingFallbacks = ['sdk']
+        }
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-gradle.txt', 'proguard-gradle-repackage.txt'
+            signingConfig signingConfigs.release
+            matchingFallbacks = ['odk']
+        }
+    }
+
+    flavorDimensions "application"
+    productFlavors {
+        civ {
+            getIsDefault().set(true)
+            dimension "application"
+            manifestPlaceholders = [atakApiVersion: "com.atakmap.app@" + ATAK_VERSION + ".CIV"]
+        }
+        applicationVariants.all { variant ->
+            variant.resValue "string", "versionName", variant.versionName
+            buildConfigField 'String', 'ATAK_PACKAGE_NAME', '"com.atakmap.app.civ"'
+        }
+    }
+
+    sourceSets {
+        main {
+            setProperty("archivesBaseName", "ATAK-Plugin-" + rootProject.name + "-" + PLUGIN_VERSION + "-" + getVersionName() + "-" + ATAK_VERSION)
+            defaultConfig.versionCode = getVersionCode()
+            defaultConfig.versionName = PLUGIN_VERSION + " (" + getVersionName() + ") - [" + ATAK_VERSION + "]"
+        }
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 34
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+        }
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+    }
+}
+
+afterEvaluate {
+    project.file('proguard-gradle-repackage.txt').text = "-repackageclasses atakplugin.${rootProject.getName()}"
+}

@@ -1,0 +1,5 @@
+# Copy to local.properties (never commit it). build-all.sh writes these for you.
+sdk.dir=/path/to/Android/sdk
+# The ATAK SDK to build against (folder that contains main.jar and atak-gradle-takdev.jar)
+sdk.path=/path/to/ATAK-CIV-5.8.0.10-SDK
+takdev.plugin=/path/to/ATAK-CIV-5.8.0.10-SDK/atak-gradle-takdev.jar

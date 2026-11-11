@@ -1,0 +1,28 @@
+<resources>
+    <style name="ATAKPluginTheme" parent="@android:style/Theme.Holo">
+        <item name="android:buttonStyle">@android:style/Widget.Button</item>
+        <item name="android:spinnerStyle">@style/MCSpinner</item>
+        <item name="android:spinnerItemStyle">@style/MCSpinnerItem</item>
+        <item name="android:spinnerDropDownItemStyle">@style/MCSpinnerItem</item>
+    </style>
+    <!-- ATAK panes need dialog-mode spinners. -->
+    <style name="MCSpinner" parent="@android:style/Widget.Spinner">
+        <item name="android:spinnerMode">dialog</item>
+    </style>
+    <style name="MCSpinnerItem">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:padding">6dp</item>
+    </style>
+    <style name="MCLabel">
+        <item name="android:textColor">#B8C2CC</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="MCHeading">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">14dp</item>
+    </style>
+</resources>

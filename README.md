@@ -17,6 +17,7 @@ Imagery from incidents and operations is often sensitive. Map Compressor never u
 | | Best for | Needs |
 |---|---|---|
 | **Offline page**: `dist/map-compressor-offline.html` | Anyone: quality slider, live map preview, detail check, exports | Just double-click the file. Works with no internet, from a laptop, USB stick or shared drive. |
+| **ATAK plugin** (preview): [`atak-plugin/`](docs/atak-plugin-plan.md) | Converting **on the device inside ATAK**: pick a GeoTIFF, set quality, *Convert & add to map*, *Share…* | ATAK 5.6 / 5.7 / 5.8. Developer builds now; TAK.gov-signed builds pending. |
 | **CloudTAK plugin**: [`cloudtak-plugin/`](cloudtak-plugin/README.md) | Teams on CloudTAK; adds **Share to TAK Server** | Built into your CloudTAK deployment |
 | **Desktop tool**: `map_compress.py` | Converting whole folders at once | Python 3.9+ and `pip install -r requirements.txt` (offline after install) |
 
@@ -83,6 +84,7 @@ npm run build:offline
 This writes `dist/map-compressor-offline.html` and `dist/THIRD-PARTY-LICENSES.txt`, the licences of the open-source libraries bundled into it (MIT, BSD-3-Clause, Apache-2.0, CC0).
 
 ```
+atak-plugin/              native ATAK plugin (Android, uses ATAK's built-in GDAL); see docs/atak-plugin-plan.md
 map_compress.py           desktop / batch tool (Python, rasterio)
 web/                      offline page source (template + app)
 cloudtak-plugin/          CloudTAK plugin and the shared browser engine

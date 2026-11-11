@@ -25,3 +25,17 @@ node_modules/
 # Local dev / test only
 .claude/
 dist/_test/
+
+# ATAK plugin build outputs and machine-specific settings
+atak-plugin/local.properties
+atak-plugin/apk/
+atak-plugin/.gradle/
+atak-plugin/build/
+atak-plugin/app/build/
+atak-plugin/app/proguard-gradle-repackage.txt
+# ATAK SDK files must never be committed (TAK SDK licence)
+main.jar
+atak-gradle-takdev.jar
+atak-javadoc.jar
+android_keystore
+atak-plugin/.takdev/

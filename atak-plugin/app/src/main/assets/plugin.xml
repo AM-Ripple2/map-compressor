@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- If you change this file, also bump the plugin version. -->
+<plugin>
+    <extension
+        type="gov.tak.api.plugin.IPlugin"
+        impl="com.atakmap.android.mapcompressor.plugin.MapCompressorPlugin"
+        singleton="true" />
+</plugin>
