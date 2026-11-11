@@ -11,14 +11,20 @@ Adds a **Map Compressor** item to CloudTAK's main menu. Users can:
    - **Download GeoTIFF** (recommended): WGS84, JPEG-compressed, built-in zoom levels, and an alpha band that keeps empty areas see-through (verified in ATAK).
    - **Download KMZ:** a JPEG overlay for ATAK's Import Manager (*Image Overlay File*). It can't be transparent.
    - **Download Data Package:** the GeoTIFF wrapped for TAK Server / Data Sync.
-   - **Share to TAK Server:** pick channels, choose GeoTIFF or KMZ, and it's published as a Data Package for ATAK, WinTAK, iTAK and TAK Aware users on those channels.
+   - **Share** (GeoTIFF or KMZ), with the same options as CloudTAK's own Share dialog:
+     - **Share / Broadcast…** opens a dialog with three tabs: **Users**, **Channels** and **Data Syncs**. Pick any mix and press *Share*, or press **Broadcast**, which sends only to the channels that are turned on. Users and channels get the normal TAK "file received" prompt in ATAK, iTAK and TAK Aware. Data Syncs get the file added to their contents.
+     - **Data Package** publishes it to the TAK Server package list for the channels you pick.
+     - **Download** saves it on this device.
+   - Sending to users, channels or a broadcast first stores the file in your CloudTAK **Files** (this is how CloudTAK shares files). A copy stays there.
 
 ## Files
 
 | File | Purpose |
 |---|---|
 | `index.ts` | Plugin entry point: registers the menu item and route |
-| `Panel.vue` | CloudTAK panel: hosts the UI and adds channel selection and sharing |
+| `Panel.vue` | CloudTAK panel: hosts the UI and the Share / Data Package / Download buttons |
+| `ShareModal.vue` | Share dialog: Users, Channels, Data Syncs, Broadcast |
+| `share.ts` | Share calls: Files upload, file share, Data Sync upload, Data Package publish, download |
 | `ui.js` / `ui.d.ts` | The panel UI (framework-free, also used by `../web/index.html`) |
 | `core.js` | Reading: GeoTIFF → pixels and coordinates; KMZ / Data Package packaging |
 | `geotiff-write.js` | In-browser GeoTIFF writer (WGS84 resampling, JPEG tiles, alpha band, overviews) |
@@ -79,6 +85,6 @@ Then rebuild and redeploy CloudTAK as usual. CloudTAK loads every `plugins/*/ind
 
 ## Not yet tested
 
-- **The CloudTAK build itself.** `index.ts`, `Panel.vue` and the share call follow CloudTAK's source (checked against 13.24.0 and 13.122.8) but haven't been compiled into a CloudTAK instance.
+- **The CloudTAK build itself.** `index.ts`, `Panel.vue`, `ShareModal.vue` and `share.ts` follow CloudTAK's source (checked against 13.122.8) but haven't been compiled into a CloudTAK instance. The share dialog reuses CloudTAK's own contact list, channel list and Data Sync subscriptions.
 - **On devices:** the browser-made GeoTIFF in ATAK; iTAK, TAK Aware and WebTAK; the data package.
 - **Very large maps on iPhone/iPad.** Safari limits canvases to 16.7 megapixels, so bigger maps are automatically reduced to fit, and the panel says so.
