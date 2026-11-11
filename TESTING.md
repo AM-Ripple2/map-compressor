@@ -20,8 +20,8 @@ Check:
 
 ## 2. ATAK plugin (Android)
 
-- **ATAK-CIV 5.6:** `MapCompressor-ATAK-5.6.0.apk` is **signed by TAK.gov** and loads in normal Play Store / TAK.gov ATAK. ATAK marks it as signed through the third-party pipeline, which is expected.
-- **ATAK 5.7 / 5.8:** these builds are still being signed. Until then they load only in the **developer ATAK** from the ATAK SDK. Normal ATAK shows "The signature for the plugin is INVALID".
+- **ATAK-CIV 5.6 and 5.8:** `MapCompressor-ATAK-5.6.0.apk` and `MapCompressor-ATAK-5.8.0.apk` are **signed by TAK.gov** and load in normal Play Store / TAK.gov ATAK. ATAK marks them as signed through the third-party pipeline, which is expected.
+- **ATAK 5.7:** this build is still being signed. Until then it loads only in the **developer ATAK** from the ATAK SDK. Normal ATAK shows "The signature for the plugin is INVALID".
 
 1. Install the APK that matches your ATAK version: `MapCompressor-ATAK-5.6.0.apk`, `-5.7.0.apk` or `-5.8.0.apk`.
 2. In ATAK: **Settings → Tool Preferences → Plugins**, then load **Map Compressor**.
