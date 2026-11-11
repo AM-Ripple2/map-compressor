@@ -39,3 +39,6 @@ atak-gradle-takdev.jar
 atak-javadoc.jar
 android_keystore
 atak-plugin/.takdev/
+
+# TAK.gov Third Party Pipeline source packages (generated)
+dist-tpp/

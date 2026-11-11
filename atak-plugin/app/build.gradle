@@ -22,22 +22,33 @@ buildscript {
         def v = project.properties[name] ?: readLocal(name)
         return (null == v) ? defValue : v
     }
-    // Build offline from a local ATAK SDK (not TAK.gov's artifact repository).
-    ext.isDevKitEnabled = { -> false }
-    ext.takrepoUrl = 'https://localhost/'
-    ext.takrepoUser = 'invalid'
-    ext.takrepoPassword = 'invalid'
-    ext.takdevPlugin = prop('takdev.plugin', null)
-    if (ext.takdevPlugin == null) {
-        throw new GradleException("Set takdev.plugin (and sdk.path) to an ATAK SDK: see local.properties.example or build-all.sh")
-    }
+    // Two ways to get the ATAK build tooling (atak-gradle-takdev):
+    //  * TAK.gov build servers / devkit: set takrepo.url, takrepo.user, takrepo.password
+    //    (local.properties or -P) and it is fetched from TAK.gov's artifact repository.
+    //  * Local SDK: set takdev.plugin (and sdk.path) to an unpacked ATAK SDK.
+    ext.isDevKitEnabled = { -> prop('takrepo.url', null) != null }
+    ext.takrepoUrl = prop('takrepo.url', 'https://localhost/')
+    ext.takrepoUser = prop('takrepo.user', 'invalid')
+    ext.takrepoPassword = prop('takrepo.password', 'invalid')
+    ext.takdevPlugin = prop('takdev.plugin', "${rootDir}/../../atak-gradle-takdev.jar")
 
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = takrepoUrl
+            credentials {
+                username = takrepoUser
+                password = takrepoPassword
+            }
+        }
     }
     dependencies {
-        classpath files(takdevPlugin)
+        if (isDevKitEnabled()) {
+            classpath "com.atakmap.gradle:atak-gradle-takdev:3.+"
+        } else {
+            classpath files(takdevPlugin)
+        }
     }
 }
 
@@ -135,7 +146,7 @@ android {
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 36   // required by the ATAK 5.6+ build environment
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }

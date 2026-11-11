@@ -39,7 +39,7 @@ Goal: run Map Compressor **inside ATAK on the device**, fully offline: pick a Ge
    - Verified with desktop GDAL: 0.00 m position error; see-through area matches the source to 99.98%.
    - The Android emulator on Apple Silicon couldn't run developer ATAK ("No config chosen" OpenGL error in every GPU mode), so use a physical device.
    - Installing developer ATAK 5.7.0.17 over 5.6.0.26 needs `adb install -r -d`: the 5.6.0.26 maintenance build has a higher version code.
-5. ⏳ Submit to TAK.gov's third-party plugin pipeline for signed 5.6 / 5.7 / 5.8 builds.
+5. ⏳ TAK.gov Third Party Pipeline: source packages ready (see `tak-gov-submission.md`); submission and signed-build testing pending.
 
 ## SDK licence
 
