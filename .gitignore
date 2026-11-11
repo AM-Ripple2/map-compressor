@@ -42,3 +42,4 @@ atak-plugin/.takdev/
 
 # TAK.gov Third Party Pipeline source packages (generated)
 dist-tpp/
+dist-test/
