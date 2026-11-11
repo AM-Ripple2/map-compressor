@@ -1,0 +1,27 @@
+# Map data never belongs in the repo (size, and it may be sensitive)
+*.tif
+*.tiff
+*.kmz
+*.zip
+*.jpg
+*.jgw
+*.prj
+*.aux.xml
+atak_maps/
+web/_test/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / editors / OS
+node_modules/
+.DS_Store
+.vscode/
+.idea/
+
+# Local dev / test only
+.claude/
+dist/_test/
