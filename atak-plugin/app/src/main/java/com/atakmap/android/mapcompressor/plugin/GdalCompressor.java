@@ -122,11 +122,17 @@ final class GdalCompressor {
         }
     }
 
+    /** The written overlay and its lon/lat extent. */
+    static final class Result {
+        File file;
+        double west, south, east, north;
+    }
+
     /**
-     * Convert. maxDim = 0 keeps full resolution. Returns the written file.
+     * Convert. maxDim = 0 keeps full resolution.
      */
-    static File convert(SourceInfo info, File out, int quality, int maxDim, boolean transparent,
-                        final Progress progress) throws IOException {
+    static Result convert(SourceInfo info, File out, int quality, int maxDim, boolean transparent,
+                          final Progress progress) throws IOException {
         Dataset src = open(new File(info.path));
         Dataset warped = null;
         Dataset result = null;
@@ -201,8 +207,17 @@ final class GdalCompressor {
                 }
             }
             result.FlushCache();
+
+            // Extent of the overlay (WGS84, north-up) so the map can zoom to it.
+            double[] gt = result.GetGeoTransform();
+            Result r = new Result();
+            r.file = out;
+            r.west = gt[0];
+            r.north = gt[3];
+            r.east = gt[0] + gt[1] * result.GetRasterXSize();
+            r.south = gt[3] + gt[5] * result.GetRasterYSize();
             if (progress != null) progress.onProgress(1.0, "Done");
-            return out;
+            return r;
         } finally {
             if (result != null) result.delete();
             if (warped != null) warped.delete();

@@ -10,9 +10,10 @@
 - **Convert & add to map** uses ATAK's built-in GDAL to write the ATAK-verified format: WGS84, RGBA alpha band, JPEG tiles and zoom levels. It imports the result as an Image Overlay.
 - **Share…** opens ATAK's send dialog.
 - **One source tree builds for ATAK 5.6, 5.7 and 5.8** (`build-all.sh`). All three compile against their TAK.gov SDKs.
-- **Tested on a Galaxy S21 with developer ATAK 5.6.0.26:** a 223 MB PIX4D orthomosaic converted on the phone in about 50 s to a 31.6 MB transparent GeoTIFF, displayed lined up on the map.
-- **Known issues:** the toolbar icon renders as a white square, and the map doesn't zoom to the new overlay automatically.
-- **Not yet done:** device tests on 5.7 and 5.8; TAK.gov third-party signing.
+- **Tested on a Galaxy S21 with developer ATAK 5.6.0.26, 5.7.0.17 and 5.8.0.10:** a 223 MB PIX4D orthomosaic converted on the phone in 50–80 s to a 31.6 MB transparent GeoTIFF, displayed lined up on the map. The output is byte-for-byte identical across the three versions.
+- **Toolbar icon** is a white-on-transparent glyph, so it renders correctly when ATAK tints toolbar icons.
+- **The map zooms to the new overlay** automatically after *Convert & add to map*.
+- **Not yet done:** TAK.gov third-party signing.
 
 ## 0.1.0 (2026-11-11): first release for team testing
 

@@ -26,6 +26,8 @@ import com.atakmap.android.importexport.ImportReceiver;
 import com.atakmap.android.importexport.send.SendDialog;
 import com.atakmap.android.ipc.AtakBroadcast;
 import com.atakmap.android.maps.MapView;
+import com.atakmap.android.util.ATAKUtilities;
+import com.atakmap.coremap.maps.coords.GeoPoint;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -213,15 +215,17 @@ final class CompressorController {
         progressBar.setProgress(0);
         worker.execute(() -> {
             try {
-                GdalCompressor.convert(s, out, q, maxDim, transparent,
+                final GdalCompressor.Result r = GdalCompressor.convert(s, out, q, maxDim, transparent,
                         (f, msg) -> ui.post(() -> { progressBar.setProgress((int) (f * 100)); setStatus(msg); }));
                 ui.post(() -> {
                     lastOutput = out;
                     share.setEnabled(true);
                     progressBar.setVisibility(View.GONE);
-                    setBusy(false, String.format(Locale.US, "Saved %s (%s, %.0f%% smaller). Adding to map…",
+                    setBusy(false, String.format(Locale.US, "Saved %s (%s, %.0f%% smaller). Added to map.",
                             out.getName(), human(out.length()), 100.0 * (1 - (double) out.length() / s.fileSize)));
                     importToMap(out);
+                    // Give ATAK a moment to register the overlay, then zoom to it.
+                    ui.postDelayed(() -> zoomTo(r), 1500);
                 });
             } catch (final Exception e) {
                 ui.post(() -> { progressBar.setVisibility(View.GONE); setBusy(false, "Failed: " + e.getMessage()); });
@@ -237,6 +241,15 @@ final class CompressorController {
         i.putExtra(ImportReceiver.EXTRA_ZOOM_TO_FILE, true);
         i.putExtra(ImportReceiver.EXTRA_SHOW_NOTIFICATIONS, true);
         AtakBroadcast.getInstance().sendBroadcast(i);
+    }
+
+    private void zoomTo(GdalCompressor.Result r) {
+        MapView mv = MapView.getMapView();
+        if (mv == null) return;
+        GeoPoint[] corners = {
+                new GeoPoint(r.north, r.west), new GeoPoint(r.north, r.east),
+                new GeoPoint(r.south, r.east), new GeoPoint(r.south, r.west)};
+        ATAKUtilities.scaleToFit(mv, corners, mv.getWidth(), mv.getHeight());
     }
 
     private void shareOutput() {

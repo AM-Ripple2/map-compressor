@@ -34,7 +34,11 @@ Goal: run Map Compressor **inside ATAK on the device**, fully offline: pick a Ge
 1. ✅ Toolchain: TAK.gov's unmodified plugin template builds for 5.6.0.26, 5.7.0.17 and 5.8.0.10.
 2. ✅ Plugin source written: `atak-plugin/`, with GDAL conversion, pane UI, import to map, and share.
 3. ✅ Compiles against all three SDKs. `atak-plugin/build-all.sh` produces 5.6, 5.7 and 5.8 APKs from one source tree.
-4. ⏳ Runtime test in each SDK's developer ATAK, on an emulator or spare device: convert the PIX4D orthomosaic and verify the output with desktop GDAL and on the map.
+4. ✅ Device test (Galaxy S21, Android 15) on developer ATAK **5.6.0.26, 5.7.0.17 and 5.8.0.10**. Each loaded the plugin, converted a 223 MB PIX4D orthomosaic on the phone (50–80 s), and imported the result as an Image Overlay that displays lined up on the map.
+   - The three outputs are **byte-for-byte identical**: 31.6 MB, WGS84, RGBA alpha band, JPEG tiles, overviews.
+   - Verified with desktop GDAL: 0.00 m position error; see-through area matches the source to 99.98%.
+   - The Android emulator on Apple Silicon couldn't run developer ATAK ("No config chosen" OpenGL error in every GPU mode), so use a physical device.
+   - Installing developer ATAK 5.7.0.17 over 5.6.0.26 needs `adb install -r -d`: the 5.6.0.26 maintenance build has a higher version code.
 5. ⏳ Submit to TAK.gov's third-party plugin pipeline for signed 5.6 / 5.7 / 5.8 builds.
 
 ## SDK licence

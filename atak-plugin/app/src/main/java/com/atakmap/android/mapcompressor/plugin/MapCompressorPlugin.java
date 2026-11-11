@@ -37,7 +37,8 @@ public class MapCompressorPlugin implements IPlugin {
         toolbarItem = new ToolbarItem.Builder(
                 pluginContext.getString(R.string.app_name),
                 MarshalManager.marshal(
-                        pluginContext.getResources().getDrawable(R.drawable.ic_launcher),
+                        // White-on-transparent glyph: ATAK tints toolbar icons, so a filled icon shows as a blank square.
+                        pluginContext.getResources().getDrawable(R.drawable.ic_toolbar),
                         android.graphics.drawable.Drawable.class,
                         gov.tak.api.commons.graphics.Bitmap.class))
                 .setListener(new ToolbarItemAdapter() {
