@@ -18,11 +18,12 @@ Check:
 - the overlay is sharp enough at the zoom you use,
 - the file size is reasonable.
 
-## 2. ATAK plugin (Android, developer ATAK only)
+## 2. ATAK plugin (Android)
 
-The APKs on the Releases page are **not TAK.gov-signed yet**. They load only in the **developer ATAK** that ships with the ATAK SDK (from your own TAK.gov account), not in Play Store / TAK.gov ATAK. Release-ATAK users should test with the offline page until signed builds are available.
+- **ATAK-CIV 5.6:** `MapCompressor-ATAK-5.6.0.apk` is **signed by TAK.gov** and loads in normal Play Store / TAK.gov ATAK. ATAK marks it as signed through the third-party pipeline, which is expected.
+- **ATAK 5.7 / 5.8:** these builds are still being signed. Until then they load only in the **developer ATAK** from the ATAK SDK. Normal ATAK shows "The signature for the plugin is INVALID".
 
-1. Install the APK that matches your developer ATAK: `MapCompressor-ATAK-5.6.0.apk`, `-5.7.0.apk` or `-5.8.0.apk`.
+1. Install the APK that matches your ATAK version: `MapCompressor-ATAK-5.6.0.apk`, `-5.7.0.apk` or `-5.8.0.apk`.
 2. In ATAK: **Settings → Tool Preferences → Plugins**, then load **Map Compressor**.
 3. Open **Map Compressor** from the toolbar/Tools menu. Pick a GeoTIFF, set the quality, and tap **Convert & add to map**.
 

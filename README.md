@@ -9,11 +9,11 @@ A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in AT
 | For | Download |
 |---|---|
 | **Any computer** (Windows, Mac, Linux, offline). Works with every TAK client. | [**map-compressor-offline.html**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/map-compressor-offline.html) |
-| **ATAK 5.8** plugin | [**MapCompressor-ATAK-5.8.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.8.0.apk) |
-| **ATAK 5.7** plugin | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
-| **ATAK 5.6** plugin | [**MapCompressor-ATAK-5.6.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.6.0.apk) |
+| **ATAK 5.8** plugin (developer ATAK only, signing in progress) | [**MapCompressor-ATAK-5.8.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.8.0.apk) |
+| **ATAK 5.7** plugin (developer ATAK only, signing in progress) | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
+| **ATAK 5.6** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.6.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.6.0.apk) |
 
-> ⚠️ The ATAK plugin APKs are **not TAK.gov-signed yet**. They load only in **developer ATAK** (from the ATAK SDK), not Play Store / TAK.gov ATAK. Everyone else: use the offline page. See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
+> ✅ The **ATAK 5.6** plugin is signed by TAK.gov, so it loads in normal Play Store / TAK.gov ATAK-CIV 5.6. The **5.7 and 5.8** builds are still with TAK.gov; until they're signed, those two only load in **developer ATAK** (from the ATAK SDK). See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
 
 ## Privacy: runs entirely on your device
 
