@@ -4,14 +4,14 @@ Turns large GeoTIFF maps and drone orthomosaics (e.g. PIX4Dreact / PIX4Dengine e
 
 A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in ATAK, lined up with the basemap.
 
-## ⬇️ Download (test build 0.1.0)
+## ⬇️ Download (0.1.1)
 
 | For | Download |
 |---|---|
-| **Any computer** (Windows, Mac, Linux, offline). Works with every TAK client. | [**map-compressor-offline.html**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/map-compressor-offline.html) |
-| **ATAK 5.8** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.8.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.8.0.apk) |
-| **ATAK 5.7** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.7.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.7.0.apk) |
-| **ATAK 5.6** plugin ✅ TAK.gov-signed | [**MapCompressor-ATAK-5.6.0.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.0-test/MapCompressor-ATAK-5.6.0.apk) |
+| **Any computer** (Windows, Mac, Linux, offline). Works with every TAK client. | [**map-compressor-offline.html**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/map-compressor-offline.html) |
+| **ATAK 5.8** plugin ✅ TAK.gov-signed | [**ATAK-Plugin-MapCompressor-0.1.1--5.8.0-civ-release.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.8.0-civ-release.apk) |
+| **ATAK 5.7** plugin ✅ TAK.gov-signed | [**ATAK-Plugin-MapCompressor-0.1.1--5.7.0-civ-release.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.7.0-civ-release.apk) |
+| **ATAK 5.6** plugin ✅ TAK.gov-signed | [**ATAK-Plugin-MapCompressor-0.1.1--5.6.0-civ-release.apk**](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.6.0-civ-release.apk) |
 
 > ✅ All three ATAK plugins (**5.6, 5.7 and 5.8**) are signed by TAK.gov, so they load in normal Play Store / TAK.gov ATAK-CIV. Download the one that matches your ATAK version. See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
 

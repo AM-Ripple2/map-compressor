@@ -1,8 +1,8 @@
 # Testing Map Compressor (pre-release)
 
-Thanks for testing. This is test build 0.1.0. The ATAK plugins are signed by TAK.gov. Please report problems as GitHub issues on this repository. Include your device, TAK client and version, and the input map's size, coordinate system (e.g. UTM 16N) and source software (e.g. PIX4Dreact).
+Thanks for testing. This is version 0.1.1. The ATAK plugins are signed by TAK.gov. Please report problems as GitHub issues on this repository. Include your device, TAK client and version, and the input map's size, coordinate system (e.g. UTM 16N) and source software (e.g. PIX4Dreact).
 
-Download links are at the top of the README (also on the **Releases** page, `v0.1.0-test`).
+Download links are at the top of the README (also on the **Releases** page, `v0.1.1`).
 
 ## 1. Offline page (anyone, any computer)
 
@@ -20,9 +20,9 @@ Check:
 
 ## 2. ATAK plugin (Android)
 
-- All three APKs (`MapCompressor-ATAK-5.6.0.apk`, `-5.7.0.apk`, `-5.8.0.apk`) are **signed by TAK.gov** and load in normal Play Store / TAK.gov ATAK-CIV. Use the one that matches your ATAK version; ATAK marks it as signed through the third-party pipeline, which is expected.
+- All three APKs (`ATAK-Plugin-MapCompressor-0.1.1--5.6.0-civ-release.apk`, `--5.7.0-…`, `--5.8.0-…`) are **signed by TAK.gov** and load in normal Play Store / TAK.gov ATAK-CIV. Use the one that matches your ATAK version; ATAK marks it as signed through the third-party pipeline, which is expected.
 
-1. Install the APK that matches your ATAK version: `MapCompressor-ATAK-5.6.0.apk`, `-5.7.0.apk` or `-5.8.0.apk`.
+1. Install the APK whose name ends in your ATAK version: `--5.6.0-civ-release.apk`, `--5.7.0-civ-release.apk` or `--5.8.0-civ-release.apk`. If you installed 0.1.0, this installs over it.
 2. In ATAK: **Settings → Tool Preferences → Plugins**, then load **Map Compressor**.
 3. Open **Map Compressor** from the toolbar/Tools menu. Pick a GeoTIFF, set the quality, and tap **Convert & add to map**.
 
