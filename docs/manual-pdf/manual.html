@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Map Compressor User Guide</title>
+<style>
+  @page { size: Letter; margin: 0.6in 0.65in 0.7in; }
+  :root { --ink:#1d2430; --muted:#5a6475; --line:#d9dee7; --accent:#1f6feb; --accent-soft:#eaf2ff; --ok:#1a7f37; --ok-soft:#e8f6ec; --warn:#9a6700; --warn-soft:#fff6dd; --dark:#1b1f26; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin:0; color:var(--ink); font: 10.5pt/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+  h1 { font-size: 30pt; line-height:1.1; margin: 0 0 6pt; letter-spacing:-.5px; }
+  h2 { font-size: 17pt; margin: 0 0 10pt; padding-bottom:5pt; border-bottom: 2px solid var(--accent); }
+  h3 { font-size: 12pt; margin: 14pt 0 5pt; }
+  p { margin: 0 0 7pt; }
+  a { color: var(--accent); text-decoration: none; }
+  .page { break-after: page; }
+  .page:last-child { break-after: auto; }
+  .muted { color: var(--muted); }
+  .small { font-size: 9pt; }
+  table { width:100%; border-collapse: collapse; margin: 4pt 0 10pt; font-size: 9.6pt; break-inside: avoid; }
+  th, td { text-align:left; vertical-align: top; padding: 5pt 7pt; border-bottom: 1px solid var(--line); }
+  th { background:#f3f5f9; font-weight:600; }
+  .box { border-radius: 8px; padding: 9pt 12pt; margin: 8pt 0 10pt; break-inside: avoid; }
+  .tip { background: var(--accent-soft); }
+  .ok { background: var(--ok-soft); }
+  .warn { background: var(--warn-soft); }
+  .box strong:first-child { display:block; margin-bottom:2pt; }
+  ol.steps { list-style:none; counter-reset: s; padding:0; margin: 4pt 0 8pt; }
+  ol.steps > li { counter-increment: s; position:relative; padding: 0 0 7pt 30pt; break-inside: avoid; }
+  ol.steps > li::before { content: counter(s); position:absolute; left:0; top:-1pt; width:20pt; height:20pt; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+  ul { margin: 2pt 0 8pt; padding-left: 16pt; }
+  li { margin-bottom: 2pt; }
+  .ui { font-weight:600; background:#eef1f6; border:1px solid #d5dbe5; border-radius:4px; padding:0 4pt; white-space:nowrap; }
+  code, .url { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 8.6pt; word-break: break-all; }
+
+  /* cover */
+  .cover { display:flex; flex-direction:column; min-height: 9.6in; }
+  .hero { background: var(--dark); color:#fff; border-radius: 14px; padding: 26pt 26pt 22pt; display:flex; gap:20pt; align-items:center; }
+  .hero img { width: 92pt; height: 92pt; flex: none; }
+  .hero .tag { color:#9fb3cc; font-size: 12pt; margin:0; }
+  .hero .ver { display:inline-block; margin-top:8pt; font-size:9pt; color:#cfe0ff; border:1px solid #4a5a73; border-radius: 20px; padding: 2pt 9pt; }
+  .stats { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; margin: 16pt 0 6pt; }
+  .stat { border:1px solid var(--line); border-radius:10px; padding: 11pt 12pt; }
+  .stat b { display:block; font-size: 16pt; white-space:nowrap; line-height:1.1; margin-bottom: 3pt; color: var(--accent); }
+  .stat span { font-size: 9.3pt; color: var(--muted); }
+  .three { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; margin-top: 6pt; }
+  .card { border:1px solid var(--line); border-radius:10px; padding: 10pt 11pt; break-inside: avoid; }
+  .card h4 { margin:0 0 3pt; font-size: 11pt; }
+  .card p { font-size: 9.3pt; margin:0; color: var(--muted); }
+  .toc { margin-top: auto; border-top:1px solid var(--line); padding-top: 10pt; display:grid; grid-template-columns: 1fr 1fr; gap: 2pt 20pt; font-size: 9.6pt; }
+  .toc div { display:flex; justify-content:space-between; border-bottom: 1px dotted var(--line); padding: 2pt 0; }
+
+  .dl { border:2px solid var(--accent); border-radius:10px; padding: 10pt 12pt; margin: 6pt 0 10pt; break-inside: avoid; }
+  .dl table { margin:0; }
+  .dl td:first-child { width: 22%; font-weight:600; }
+  .footer-note { margin-top: 12pt; font-size: 8.8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6pt; }
+  .tight th, .tight td { padding: 3.5pt 7pt; font-size: 9.2pt; }
+  .two { display:grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1: COVER ============ -->
+<section class="page cover">
+  <div class="hero">
+    <img src="data:image/png;base64,__ICON__" alt="">
+    <div>
+      <h1>Map Compressor</h1>
+      <p class="tag">Turn large drone maps into small, see-through overlays for TAK</p>
+      <span class="ver">User Guide · Version 0.1.1 · November 2026</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:18pt">What it does</h3>
+  <p>Drone mapping software (PIX4Dreact, PIX4Dengine, DroneDeploy, WebODM and others) produces orthomosaic maps that are often <b>hundreds of megabytes</b>. Those files are slow to send, too big for many phones and tablets, and the empty area around the flight shows up as a <b>black box</b> in TAK.</p>
+  <p>Map Compressor shrinks the map so it sends quickly and loads on any TAK device. It keeps the map in the right place, and it keeps the empty border <b>see-through</b> so only your imagery shows on the map.</p>
+
+  <div class="stats">
+    <div class="stat"><b>223 MB → ~31 MB</b><span>A real fire-scene drone map, converted on a phone in about a minute</span></div>
+    <div class="stat"><b>See-through</b><span>No black box around the imagery. The basemap shows around it.</span></div>
+    <div class="stat"><b>100% on-device</b><span>No account, no cloud, no upload. Safe for sensitive imagery.</span></div>
+  </div>
+
+  <h3>Three ways to use it</h3>
+  <div class="three">
+    <div class="card"><h4>📱 ATAK plugin</h4><p>Convert on an Android phone or tablet, inside ATAK. The map is added straight away and you can share it from ATAK.</p></div>
+    <div class="card"><h4>💻 Laptop page</h4><p>One file you double-click on any Windows, Mac or Linux computer. No install and no internet needed.</p></div>
+    <div class="card"><h4>📡 Any TAK client</h4><p>The finished file is made for ATAK, iTAK, TAK Aware, WebTAK and CloudTAK.</p></div>
+  </div>
+
+  <div class="toc">
+    <div><span>Downloads</span><span>2</span></div>
+    <div><span>Settings explained</span><span>5</span></div>
+    <div><span>Using the ATAK plugin</span><span>3</span></div>
+    <div><span>Opening the map in each TAK app</span><span>6</span></div>
+    <div><span>Using the laptop page</span><span>4</span></div>
+    <div><span>Troubleshooting and help</span><span>6</span></div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2: DOWNLOADS ============ -->
+<section class="page">
+  <h2>Downloads</h2>
+  <p>Click the link for the version you need. The download starts straight away; no account or sign-up is needed.</p>
+
+  <div class="dl">
+    <table>
+      <tr><td>📱 ATAK 5.8</td><td><a href="https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.8.0-civ-release.apk">Download Map Compressor for ATAK 5.8</a><br><span class="url muted">github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.8.0-civ-release.apk</span></td></tr>
+      <tr><td>📱 ATAK 5.7</td><td><a href="https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.7.0-civ-release.apk">Download Map Compressor for ATAK 5.7</a><br><span class="url muted">github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.7.0-civ-release.apk</span></td></tr>
+      <tr><td>📱 ATAK 5.6</td><td><a href="https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.6.0-civ-release.apk">Download Map Compressor for ATAK 5.6</a><br><span class="url muted">github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/ATAK-Plugin-MapCompressor-0.1.1--5.6.0-civ-release.apk</span></td></tr>
+      <tr><td>💻 Laptop / desktop</td><td><a href="https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/map-compressor-offline.html">Download the Map Compressor page</a> (works offline)<br><span class="url muted">github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/map-compressor-offline.html</span></td></tr>
+    </table>
+  </div>
+
+  <h3>Which ATAK download do I need?</h3>
+  <p>Open ATAK's <span class="ui">About</span> screen and look at the version number. Only the first two numbers matter:</p>
+  <table>
+    <tr><th>ATAK shows…</th><th>Download</th></tr>
+    <tr><td>5.8.x.x</td><td>ATAK 5.8</td></tr>
+    <tr><td>5.7.x.x</td><td>ATAK 5.7</td></tr>
+    <tr><td>5.6.x.x (for example 5.6.0.13)</td><td>ATAK 5.6</td></tr>
+  </table>
+
+  <div class="box ok"><strong>✅ Signed by TAK.gov</strong>All three ATAK downloads went through the TAK.gov third-party plugin pipeline. They load in the normal ATAK-CIV from the Play Store or TAK.gov. You don't need a developer version of ATAK.</div>
+
+  <div class="box tip"><strong>Downloading on a computer instead of the device?</strong>Save the file, then copy it to the phone or tablet with a USB cable, email, or a shared drive. Put it somewhere easy to find, such as the <b>Download</b> folder.</div>
+
+  <h3>All downloads in one place</h3>
+  <p>To see every file, or check for a newer version later, open <a href="https://github.com/AM-Ripple2/map-compressor/releases/latest">github.com/AM-Ripple2/map-compressor/releases/latest</a> and click a file name under <b>Assets</b>.</p>
+</section>
+
+<!-- ============ PAGE 3: ATAK ============ -->
+<section class="page">
+  <h2>📱 Using the ATAK plugin</h2>
+
+  <h3>Install (once)</h3>
+  <ol class="steps">
+    <li>Download the file for your ATAK version (see page 2) on the phone or tablet.</li>
+    <li>Tap the downloaded file, then tap <span class="ui">Install</span>. If Android asks, allow installs from your browser or file manager.</li>
+    <li>Open ATAK and go to <span class="ui">Settings</span> → <span class="ui">Tool Preferences</span> → <span class="ui">Plugins</span>. Find <b>Map Compressor</b> and load it.</li>
+    <li>ATAK may show that the plugin was signed through the TAK third-party pipeline. That's expected; accept it.</li>
+  </ol>
+  <p class="small muted">Updating later: install the new file over the old one. You don't need to uninstall first.</p>
+
+  <h3>Convert a drone map</h3>
+  <ol class="steps">
+    <li>Put the drone map file (<code>.tif</code> or <code>.tiff</code>) on the device, for example in the <b>Download</b> folder.</li>
+    <li>In ATAK, open <b>Map Compressor</b> from the toolbar or the <span class="ui">Tools</span> menu. A panel opens on the side.</li>
+    <li>Tap <span class="ui">Choose GeoTIFF…</span> and pick your file. The panel shows the map's size and details.</li>
+    <li>Leave the settings on the recommended defaults, or adjust them (see page 5):
+      <ul>
+        <li><b>Image size:</b> Up to 8192 px (recommended)</li>
+        <li><b>Empty areas:</b> Transparent (recommended)</li>
+        <li><b>Quality:</b> 70. Drag toward <i>Smaller file</i> or <i>Sharper map</i>. The estimated file size updates as you drag.</li>
+      </ul>
+    </li>
+    <li><i>Optional:</i> use the <b>Detail check</b> to compare the original and compressed image up close. Tap <span class="ui">Check another spot</span> to look somewhere else.</li>
+    <li>Tap <span class="ui">Convert &amp; add to map</span>. A progress bar shows how it's going; a large map takes about a minute.</li>
+    <li>When it's done, the overlay is added to the map and the map zooms to it. The panel shows the new file size and how much smaller it is.</li>
+  </ol>
+
+  <div class="box tip"><strong>Where is the file saved?</strong>In the device's <code>atak/grg</code> folder, named after the map and the quality, for example <code>FireScene_q70.tif</code>. ATAK lists it with your other overlays.</div>
+
+  <h3>Share it with your team</h3>
+  <p>Tap <span class="ui">Share…</span> after converting. ATAK's normal send screen opens, so you can send the map to contacts, a TAK Server or a Data Sync mission. Recipients get the usual "file received" message.</p>
+</section>
+
+<!-- ============ PAGE 4: LAPTOP ============ -->
+<section class="page">
+  <h2>💻 Using the laptop page</h2>
+  <p>A single web page that runs on any computer: Windows, Mac or Linux, in Chrome, Edge, Firefox or Safari. It doesn't need installing, admin rights or internet. It also works from a USB stick or shared drive.</p>
+
+  <ol class="steps">
+    <li>Download <b>map-compressor-offline.html</b> (see page 2) and double-click it. It opens in your web browser.</li>
+    <li>Check the green banner at the top left: <b>"Offline: nothing leaves this device."</b></li>
+    <li>Click <span class="ui">Choose a GeoTIFF map</span>, or drag your drone map file onto that box.</li>
+    <li>Set <b>Image size</b>, <b>Fill for empty areas</b> and <b>Quality</b>. The defaults are a good start (see page 5). The file size estimate updates as you change them.</li>
+    <li>Check the preview on the map. It shows exactly where the overlay will appear in TAK. Use <b>Preview opacity</b> to see through it.</li>
+    <li><i>Optional:</i> in the <b>Detail check</b>, click a spot on the small map to compare the original and compressed image at full size.</li>
+    <li>Click a download button:
+      <ul>
+        <li><span class="ui">Download GeoTIFF</span>: <b>recommended</b>. One file, with a see-through border.</li>
+        <li><span class="ui">Download KMZ</span>: only if your app needs KMZ. The border is filled black or white.</li>
+        <li><span class="ui">Download Data Package</span>: the GeoTIFF packed for TAK Server or Data Sync.</li>
+      </ul>
+    </li>
+    <li>Send or copy the file to your TAK device (see page 6).</li>
+  </ol>
+
+  <div class="box warn"><strong>Optional satellite background</strong>Ticking <span class="ui">Show online satellite basemap (Esri)</span> shows satellite imagery behind your map, so you can check it lines up. This needs internet and downloads map tiles from Esri, which shows Esri the <i>area</i> you're looking at (never your drone image). The banner turns orange while it's on. It's always off when you open the page.</div>
+
+  <div class="box tip"><strong>Grey map before loading a file?</strong>That's normal. With the satellite background off, the map is plain grey until you load a drone map.</div>
+
+  <p class="small muted">Technical users: a command-line version for converting whole folders at once is also available. See the user manual at github.com/AM-Ripple2/map-compressor.</p>
+</section>
+
+<!-- ============ PAGE 5: SETTINGS ============ -->
+<section class="page">
+  <h2>Settings explained</h2>
+
+  <h3>Image size</h3>
+  <p>Limits how many pixels wide or tall the finished map can be. Smaller means a smaller file.</p>
+  <table>
+    <tr><th style="width:32%">Option</th><th>When to use it</th></tr>
+    <tr><td><b>Up to 8192 px</b> (recommended)</td><td>The best balance for most drone maps: sharp at normal zoom, and a much smaller file.</td></tr>
+    <tr><td><b>Full resolution</b></td><td>When you need every detail, such as reading small text or inspecting damage closely. The file is much bigger.</td></tr>
+    <tr><td><b>Up to 4096 px</b></td><td>Slow networks, many recipients, or older devices. Fine for an overview.</td></tr>
+    <tr><td><b>Up to 2048 px</b></td><td>The smallest file, for a quick overview or a very slow link.</td></tr>
+  </table>
+
+  <h3>Empty areas</h3>
+  <p>A drone map is an irregular shape inside a rectangle, and the area outside the flight has no imagery.</p>
+  <ul>
+    <li><b>Transparent</b> (recommended): the empty area is see-through, so the TAK basemap shows around your imagery.</li>
+    <li><b>Black</b> or <b>White</b>: fills the empty area with a solid colour. Use it only if an app has trouble showing the map.</li>
+  </ul>
+
+  <h3>Quality</h3>
+  <p>A slider from <b>Smaller file</b> to <b>Sharper map</b> (10 to 95, default <b>70</b>).</p>
+  <ul>
+    <li><b>60–75</b> looks good for most drone maps.</li>
+    <li>Lower values give a smaller file, but fine detail gets soft or blocky.</li>
+    <li>Above about 85, the file grows a lot for little visible improvement.</li>
+  </ul>
+  <p>To judge it, use the <b>Detail check</b> on a spot with fine detail, such as text, vehicles or road lines, and compare <i>Original</i> with <i>Compressed</i>.</p>
+
+  <h3>Quick picks</h3>
+  <table>
+    <tr><th>Situation</th><th>Image size</th><th>Quality</th><th>Download as</th></tr>
+    <tr><td><b>Everyday use</b></td><td>Up to 8192 px</td><td>70</td><td>GeoTIFF</td></tr>
+    <tr><td><b>Slow network or many recipients</b></td><td>Up to 4096 px</td><td>60</td><td>GeoTIFF</td></tr>
+    <tr><td><b>Close inspection</b> (text, damage)</td><td>Full resolution</td><td>80</td><td>GeoTIFF (check the size before sending)</td></tr>
+    <tr><td><b>App can't show see-through maps</b></td><td>Up to 8192 px</td><td>70</td><td>KMZ</td></tr>
+  </table>
+  <p class="small muted">Results depend on the image: busy scenes such as forest or rubble don't shrink as much as open ground or rooftops.</p>
+</section>
+
+<!-- ============ PAGE 6: CLIENTS + TROUBLESHOOTING ============ -->
+<section class="page">
+  <h2>Opening the map in each TAK app</h2>
+  <table class="tight">
+    <tr><th style="width:20%">App</th><th>How to open the map</th><th style="width:22%">Status</th></tr>
+    <tr><td><b>ATAK</b></td><td><span class="ui">Import Manager</span> → <span class="ui">Image Overlay File</span> → pick the <code>.tif</code> or <code>.kmz</code>. Data Packages open from Import Manager too. The ATAK plugin adds the map for you.</td><td>✅ Tested on 5.6<br><span class="small muted">5.7 / 5.8 expected to match</span></td></tr>
+    <tr><td><b>iTAK</b></td><td>Import the GeoTIFF or Data Package (Files app, AirDrop, or received from another user).</td><td class="small">Please report results</td></tr>
+    <tr><td><b>TAK Aware</b></td><td>Import the GeoTIFF or Data Package.</td><td class="small">Please report results</td></tr>
+    <tr><td><b>WebTAK / CloudTAK</b></td><td>Upload the GeoTIFF or Data Package through the import or files menu.</td><td class="small">Please report results</td></tr>
+  </table>
+  <p>To send the map to a team, share the GeoTIFF or Data Package the way you normally share files: ATAK's send screen, a TAK Server Data Package, or a Data Sync mission.</p>
+
+  <h2 style="margin-top:12pt">Troubleshooting</h2>
+  <table class="tight">
+    <tr><th style="width:36%">Problem</th><th>What to try</th></tr>
+    <tr><td>Map Compressor isn't in ATAK's plugin list</td><td>Check you downloaded the file for your ATAK version (page 2). Restart ATAK and look in Settings → Tool Preferences → Plugins.</td></tr>
+    <tr><td>ATAK says the signature is invalid</td><td>An old test version may be installed. Uninstall Map Compressor, then install the download from page 2.</td></tr>
+    <tr><td>Can't find my file when choosing it</td><td>The file must end in <code>.tif</code> or <code>.tiff</code> and be saved on the device (for example in Download), not only in a cloud app.</td></tr>
+    <tr><td>The map is in the wrong place</td><td>The file may be missing its location data. Please report it, with the software that made the map.</td></tr>
+    <tr><td>Black box around the imagery</td><td>Download as <b>GeoTIFF</b> with Empty areas set to <b>Transparent</b>. KMZ can't be see-through.</td></tr>
+    <tr><td>Blurry when zoomed in</td><td>Raise <b>Quality</b>, or choose a bigger <b>Image size</b>.</td></tr>
+    <tr><td>File still too big</td><td>Lower <b>Image size</b> first (8192 → 4096), then lower <b>Quality</b>.</td></tr>
+    <tr><td>Very slow, or the device runs out of memory</td><td>Very large maps (over 500 MB) need a lot of memory. Use a smaller Image size, or convert on a laptop.</td></tr>
+  </table>
+
+  <div class="box tip"><strong>Questions, problems or feedback?</strong>Reply to the email this guide came with, or report it at <a href="https://github.com/AM-Ripple2/map-compressor/issues">github.com/AM-Ripple2/map-compressor/issues</a>. It helps to include your device, which TAK app and version you use, the map file's size, and the software that made it.</div>
+
+  <p class="footer-note">Map Compressor 0.1.1 · Free and open source (MIT licence) · Runs entirely on your device: nothing is uploaded unless you choose to share a file.</p>
+</section>
+
+</body>
+</html>
