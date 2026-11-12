@@ -1,6 +1,6 @@
 # Testing Map Compressor (pre-release)
 
-Thanks for testing. This is version 0.1, before TAK.gov signing. Please report problems as GitHub issues on this repository. Include your device, TAK client and version, and the input map's size, coordinate system (e.g. UTM 16N) and source software (e.g. PIX4Dreact).
+Thanks for testing. This is test build 0.1.0. The ATAK plugins are signed by TAK.gov. Please report problems as GitHub issues on this repository. Include your device, TAK client and version, and the input map's size, coordinate system (e.g. UTM 16N) and source software (e.g. PIX4Dreact).
 
 Download links are at the top of the README (also on the **Releases** page, `v0.1.0-test`).
 
