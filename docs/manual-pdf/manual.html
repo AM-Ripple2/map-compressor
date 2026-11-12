@@ -56,6 +56,10 @@
   .dl td:first-child { width: 22%; font-weight:600; }
   .footer-note { margin-top: 12pt; font-size: 8.8pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 6pt; }
   .tight th, .tight td { padding: 3.5pt 7pt; font-size: 9.2pt; }
+  .withshot { display:grid; grid-template-columns: 1fr 3.25in; gap: 16pt; align-items:start; }
+  .shot { margin:0; break-inside: avoid; }
+  .shot img { width:100%; border-radius:8px; border:1px solid #2b313b; display:block; }
+  .shot figcaption { font-size:8.6pt; color:var(--muted); margin-top:4pt; text-align:center; }
   .two { display:grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
 </style>
 </head>
@@ -64,7 +68,7 @@
 <!-- ============ PAGE 1: COVER ============ -->
 <section class="page cover">
   <div class="hero">
-    <img src="data:image/png;base64,__ICON__" alt="">
+    <img src="icon.png" alt="">
     <div>
       <h1>Map Compressor</h1>
       <p class="tag">Turn large drone maps into small, see-through overlays for TAK</p>
@@ -91,11 +95,11 @@
 
   <div class="toc">
     <div><span>Downloads</span><span>2</span></div>
-    <div><span>Settings explained</span><span>5</span></div>
+    <div><span>Settings explained</span><span>6</span></div>
     <div><span>Using the ATAK plugin</span><span>3</span></div>
-    <div><span>Opening the map in each TAK app</span><span>6</span></div>
-    <div><span>Using the laptop page</span><span>4</span></div>
-    <div><span>Troubleshooting and help</span><span>6</span></div>
+    <div><span>Opening the map in each TAK app</span><span>7</span></div>
+    <div><span>Using the laptop page</span><span>5</span></div>
+    <div><span>Troubleshooting and help</span><span>7</span></div>
   </div>
 </section>
 
@@ -130,7 +134,7 @@
   <p>To see every file, or check for a newer version later, open <a href="https://github.com/AM-Ripple2/map-compressor/releases/latest">github.com/AM-Ripple2/map-compressor/releases/latest</a> and click a file name under <b>Assets</b>.</p>
 </section>
 
-<!-- ============ PAGE 3: ATAK ============ -->
+<!-- ============ PAGES 3-4: ATAK ============ -->
 <section class="page">
   <h2>📱 Using the ATAK plugin</h2>
 
@@ -144,21 +148,39 @@
   <p class="small muted">Updating later: install the new file over the old one. You don't need to uninstall first.</p>
 
   <h3>Convert a drone map</h3>
-  <ol class="steps">
-    <li>Put the drone map file (<code>.tif</code> or <code>.tiff</code>) on the device, for example in the <b>Download</b> folder.</li>
-    <li>In ATAK, open <b>Map Compressor</b> from the toolbar or the <span class="ui">Tools</span> menu. A panel opens on the side.</li>
-    <li>Tap <span class="ui">Choose GeoTIFF…</span> and pick your file. The panel shows the map's size and details.</li>
-    <li>Leave the settings on the recommended defaults, or adjust them (see page 5):
-      <ul>
-        <li><b>Image size:</b> Up to 8192 px (recommended)</li>
-        <li><b>Empty areas:</b> Transparent (recommended)</li>
-        <li><b>Quality:</b> 70. Drag toward <i>Smaller file</i> or <i>Sharper map</i>. The estimated file size updates as you drag.</li>
-      </ul>
-    </li>
-    <li><i>Optional:</i> use the <b>Detail check</b> to compare the original and compressed image up close. Tap <span class="ui">Check another spot</span> to look somewhere else.</li>
-    <li>Tap <span class="ui">Convert &amp; add to map</span>. A progress bar shows how it's going; a large map takes about a minute.</li>
-    <li>When it's done, the overlay is added to the map and the map zooms to it. The panel shows the new file size and how much smaller it is.</li>
+  <div class="withshot">
+    <ol class="steps">
+      <li>Put the drone map file (<code>.tif</code> or <code>.tiff</code>) on the device, for example in the <b>Download</b> folder.</li>
+      <li>In ATAK, open <b>Map Compressor</b> from the toolbar or the <span class="ui">Tools</span> menu. A panel opens on the side (right).</li>
+      <li>Tap <span class="ui">Choose GeoTIFF…</span> and pick your file. Below the button, the panel shows the map's name, file size, pixel size and how much of it is empty.</li>
+      <li>Leave the settings on the recommended defaults, or adjust them (see page 6):
+        <ul>
+          <li><b>Image size:</b> Up to 8192 px (recommended)</li>
+          <li><b>Empty areas:</b> Transparent (recommended)</li>
+          <li><b>Quality:</b> 70. Drag toward <i>Smaller file</i> or <i>Sharper map</i>. The <b>Estimated GeoTIFF</b> size updates as you drag.</li>
+        </ul>
+      </li>
+      <li><i>Optional:</i> the <b>Detail check</b> shows the same spot from the <i>Original</i> and the compressed version side by side, at full size. Tap <span class="ui">Check another spot</span> to look somewhere else.</li>
+    </ol>
+    <figure class="shot">
+      <img src="atak-panel-settings.jpg" alt="Map Compressor panel in ATAK showing Choose GeoTIFF, Image size, Empty areas, Quality and Detail check">
+      <figcaption>The Map Compressor panel with a map loaded</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="page">
+  <h2>📱 Using the ATAK plugin (continued)</h2>
+  <h3>Convert a drone map</h3>
+  <ol class="steps" start="6" style="counter-reset: s 5">
+    <li>Scroll to the bottom of the panel and tap <span class="ui">Convert &amp; add to map</span>. A progress bar shows how it's going; a large drone map takes about a minute.</li>
+    <li>When it's done, the overlay is added to the map and the map zooms to it. The last line of the panel shows the saved file name, its size and how much smaller it is.</li>
   </ol>
+
+  <figure class="shot" style="max-width: 4.6in; margin: 4pt auto 10pt;">
+    <img src="atak-panel-convert.jpg" alt="Bottom of the Map Compressor panel showing Convert and add to map, Share, and the saved file message">
+    <figcaption>Bottom of the panel after converting. This example input was already compressed, so it only shrank 13%; the original 223 MB drone map shrank by 86%.</figcaption>
+  </figure>
 
   <div class="box tip"><strong>Where is the file saved?</strong>In the device's <code>atak/grg</code> folder, named after the map and the quality, for example <code>FireScene_q70.tif</code>. ATAK lists it with your other overlays.</div>
 
@@ -166,7 +188,7 @@
   <p>Tap <span class="ui">Share…</span> after converting. ATAK's normal send screen opens, so you can send the map to contacts, a TAK Server or a Data Sync mission. Recipients get the usual "file received" message.</p>
 </section>
 
-<!-- ============ PAGE 4: LAPTOP ============ -->
+<!-- ============ PAGE 5: LAPTOP ============ -->
 <section class="page">
   <h2>💻 Using the laptop page</h2>
   <p>A single web page that runs on any computer: Windows, Mac or Linux, in Chrome, Edge, Firefox or Safari. It doesn't need installing, admin rights or internet. It also works from a USB stick or shared drive.</p>
@@ -175,7 +197,7 @@
     <li>Download <b>map-compressor-offline.html</b> (see page 2) and double-click it. It opens in your web browser.</li>
     <li>Check the green banner at the top left: <b>"Offline: nothing leaves this device."</b></li>
     <li>Click <span class="ui">Choose a GeoTIFF map</span>, or drag your drone map file onto that box.</li>
-    <li>Set <b>Image size</b>, <b>Fill for empty areas</b> and <b>Quality</b>. The defaults are a good start (see page 5). The file size estimate updates as you change them.</li>
+    <li>Set <b>Image size</b>, <b>Fill for empty areas</b> and <b>Quality</b>. The defaults are a good start (see page 6). The file size estimate updates as you change them.</li>
     <li>Check the preview on the map. It shows exactly where the overlay will appear in TAK. Use <b>Preview opacity</b> to see through it.</li>
     <li><i>Optional:</i> in the <b>Detail check</b>, click a spot on the small map to compare the original and compressed image at full size.</li>
     <li>Click a download button:
@@ -185,7 +207,7 @@
         <li><span class="ui">Download Data Package</span>: the GeoTIFF packed for TAK Server or Data Sync.</li>
       </ul>
     </li>
-    <li>Send or copy the file to your TAK device (see page 6).</li>
+    <li>Send or copy the file to your TAK device (see page 7).</li>
   </ol>
 
   <div class="box warn"><strong>Optional satellite background</strong>Ticking <span class="ui">Show online satellite basemap (Esri)</span> shows satellite imagery behind your map, so you can check it lines up. This needs internet and downloads map tiles from Esri, which shows Esri the <i>area</i> you're looking at (never your drone image). The banner turns orange while it's on. It's always off when you open the page.</div>
@@ -195,7 +217,7 @@
   <p class="small muted">Technical users: a command-line version for converting whole folders at once is also available. See the user manual at github.com/AM-Ripple2/map-compressor.</p>
 </section>
 
-<!-- ============ PAGE 5: SETTINGS ============ -->
+<!-- ============ PAGE 6: SETTINGS ============ -->
 <section class="page">
   <h2>Settings explained</h2>
 
@@ -236,7 +258,7 @@
   <p class="small muted">Results depend on the image: busy scenes such as forest or rubble don't shrink as much as open ground or rooftops.</p>
 </section>
 
-<!-- ============ PAGE 6: CLIENTS + TROUBLESHOOTING ============ -->
+<!-- ============ PAGE 7: CLIENTS + TROUBLESHOOTING ============ -->
 <section class="page">
   <h2>Opening the map in each TAK app</h2>
   <table class="tight">
