@@ -15,6 +15,8 @@ A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in AT
 
 > ✅ All three ATAK plugins (**5.6, 5.7 and 5.8**) are signed by TAK.gov, so they load in normal Play Store / TAK.gov ATAK-CIV. Download the one that matches your ATAK version. See [TESTING.md](TESTING.md) for what to test, and report problems under [Issues](https://github.com/AM-Ripple2/map-compressor/issues).
 
+📖 **[User manual](docs/USER_MANUAL.md)**: how to install and use each version, what the settings do, which format to pick, and troubleshooting.
+
 ## Privacy: runs entirely on your device
 
 Imagery from incidents and operations is often sensitive. Map Compressor never uploads it:
