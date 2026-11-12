@@ -17,7 +17,7 @@ A real 223 MB PIX4D orthomosaic becomes a 10–35 MB GeoTIFF that displays in AT
 
 📖 **[User manual](docs/USER_MANUAL.md)**: how to install and use each version, what the settings do, which format to pick, and troubleshooting.
 
-📄 **[Printable user guide (PDF)](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/Map-Compressor-User-Guide.pdf)**: a 7-page guide with screenshots and direct download links, for emailing to users.
+📄 **[ATAK plugin user guide (PDF)](https://github.com/AM-Ripple2/map-compressor/releases/download/v0.1.1/Map-Compressor-User-Guide.pdf)**: a 6-page guide for ATAK users, with screenshots and direct download links, for emailing.
 
 ## Privacy: runs entirely on your device
 
