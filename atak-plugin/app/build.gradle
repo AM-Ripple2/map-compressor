@@ -8,7 +8,7 @@
 // PLUGIN_VERSION: this plugin's version.  ATAK_VERSION: the ATAK release it is built for.
 
 buildscript {
-    ext.PLUGIN_VERSION = "0.1"
+    ext.PLUGIN_VERSION = "0.1.1"
     ext.ATAK_VERSION = project.findProperty('atakVersion') ?: '5.8.0'
 
     def readLocal = { key ->
@@ -137,8 +137,15 @@ android {
     sourceSets {
         main {
             setProperty("archivesBaseName", "ATAK-Plugin-" + rootProject.name + "-" + PLUGIN_VERSION + "-" + getVersionName() + "-" + ATAK_VERSION)
-            defaultConfig.versionCode = getVersionCode()
-            defaultConfig.versionName = PLUGIN_VERSION + " (" + getVersionName() + ") - [" + ATAK_VERSION + "]"
+            // Set versionCode ourselves: the SDK default comes from git and is 1 in a
+            // TAK.gov build. Each release must get a higher code, unique per ATAK version
+            // (TAKwerx Market and MDM updates rely on it):
+            //   plugin a.b.c on ATAK 5.N  ->  (a*10000 + b*100 + c) * 100 + 50 + N
+            //   e.g. 0.1.1 on ATAK 5.6 -> 10156, 5.7 -> 10157, 5.8 -> 10158
+            def pv = PLUGIN_VERSION.tokenize('.').collect { it as int } + [0, 0, 0]
+            def av = ATAK_VERSION.tokenize('.').collect { it as int }
+            defaultConfig.versionCode = (pv[0] * 10000 + pv[1] * 100 + pv[2]) * 100 + (av[0] * 10 + av[1])
+            defaultConfig.versionName = PLUGIN_VERSION + " - [" + ATAK_VERSION + "]"
         }
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')

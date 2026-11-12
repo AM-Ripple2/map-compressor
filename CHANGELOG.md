@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 (ATAK plugin): ready for the TAKwerx Market
+
+- **Explicit `versionCode` per ATAK version** (10156 / 10157 / 10158 for 0.1.1). TAK.gov builds previously came back as versionCode 1, which blocks MDM updates and Market listing. Every release now gets a higher code.
+- **`versionName`** is now `0.1.1 - [5.x.0]`, with no empty git hash.
+- No functional changes from 0.1.0.
+
 ## Unreleased: native ATAK plugin (developer preview)
 
 - **`atak-plugin/`:** Map Compressor runs inside ATAK. It adds a toolbar tool and a side pane with:
